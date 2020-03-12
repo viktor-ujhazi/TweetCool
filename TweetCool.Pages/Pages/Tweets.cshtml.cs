@@ -11,13 +11,10 @@ namespace TweetCool.Pages
 {
     public class TweetsModel : PageModel
     {
-        //public Tweet tweet;
-        
         public JsonFileTweetService TweetService;
         public IEnumerable<Tweet> AllTweets { get; private set; }
         public TweetsModel(JsonFileTweetService tweetService)
         {
-            //this.tweet = tweet;
             TweetService = tweetService;
         }
         public void OnGet()
