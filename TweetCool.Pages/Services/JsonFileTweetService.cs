@@ -41,21 +41,35 @@ namespace TweetCool.Pages.Services
         public void AddTweet(string poster, string content)
         {
             List<Tweet> tweets = GetTweets().ToList();
+
+            Tweet tweet = CreateTweet(poster, content);
+            if (tweet != null)
+            {
+                tweets.Add(tweet);
+
+                using (var outputStream = File.OpenWrite(JsonFileName))
+                {
+                    JsonSerializer.Serialize<IEnumerable<Tweet>>(
+                        new Utf8JsonWriter(outputStream, new JsonWriterOptions
+                        {
+                            SkipValidation = true,
+                            Indented = true
+                        }),tweets);
+                }
+            }
+            
+        }
+        public Tweet CreateTweet(string poster, string content)
+        {
             Tweet tweet = new Tweet();
+            if (poster is null || content is null)
+            {
+                return null;
+            }
             tweet.Poster = poster;
             tweet.Content = content;
             tweet.DateTime = DateTime.Now;
-            
-            tweets.Add(tweet);
-            using (var outputStream = File.OpenWrite(JsonFileName))
-            {
-                JsonSerializer.Serialize<IEnumerable<Tweet>>(
-                    new Utf8JsonWriter(outputStream, new JsonWriterOptions
-                    {
-                        SkipValidation = true,
-                        Indented = true
-                    }),tweets);
-            }
+            return tweet;
         }
     }
 }
