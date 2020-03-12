@@ -6,12 +6,14 @@
 }
 
 <h1>Tweets</h1>
+<div>
 
-@foreach (var item in Model.AllTweets)
-{
-    <div>
-        
-        <p>@item.DateTime : @item.Poster:</p>
-        <p>@item.Content</p>
-    </div>
-}
+    @foreach (var item in Model.AllTweets)
+    {
+        <div class="card">
+
+            <p>@item.DateTime : @item.Poster:</p>
+            <p>@item.Content</p>
+        </div>
+    }
+</div>
