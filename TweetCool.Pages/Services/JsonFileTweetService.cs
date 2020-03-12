@@ -46,7 +46,9 @@ namespace TweetCool.Pages.Services
             if (tweet != null)
             {
                 tweets.Add(tweet);
-
+                
+                tweets = tweets.OrderBy(o => o.DateTime).ToList();
+                tweets.Reverse();
                 using (var outputStream = File.OpenWrite(JsonFileName))
                 {
                     JsonSerializer.Serialize<IEnumerable<Tweet>>(
