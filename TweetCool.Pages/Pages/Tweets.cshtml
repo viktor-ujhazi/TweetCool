@@ -1,0 +1,17 @@
+﻿@page
+@model TweetCool.Pages.TweetsModel
+@{
+    ViewData["Title"] = "Tweets";
+
+}
+
+<h1>Tweets</h1>
+
+@foreach (var item in Model.AllTweets)
+{
+    <div>
+        
+        <p>@item.DateTime : @item.Poster:</p>
+        <p>@item.Content</p>
+    </div>
+}

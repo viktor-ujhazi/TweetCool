@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+</div>
+<div>
+    <h2>What's happening</h2>
+    <form method="post">
+        <div>
+            
+            <input id="poster-input" type="text" name="poster" placeholder="Poster" />
+        </div>
+        <div>
+
+            @Html.TextAreaFor(x => x.Body, 10, 55, null)
+
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+
+</div>
